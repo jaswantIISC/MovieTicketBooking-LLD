@@ -1,6 +1,6 @@
 ## Getting Started
 
-This is the demo file (src/MovieTicketBookingDemo.java)
+This is the demo file src/MovieTicketBookingDemo.java
 
 ## Low Level UML diagram
 ![alt text](resource/MovieBookingSystem_LLD_final.drawio.png)
