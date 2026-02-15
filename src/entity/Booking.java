@@ -10,7 +10,7 @@ public class Booking {
     private final String userId;
     private final String showId;
     private final List<String> seatIds;
-    private final BookingStatus status;
+    private  BookingStatus status;
     private final double amount;
 
     public Booking(String id, String userId, String showId, List<String> seatIds, BookingStatus status, double amount) {
@@ -44,6 +44,10 @@ public class Booking {
 
     public double getAmount() {
         return amount;
+    }
+
+    public void setStatus(BookingStatus status) {
+        this.status = status;
     }
     
     
