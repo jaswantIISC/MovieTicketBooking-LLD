@@ -58,5 +58,11 @@ public class Show {
     public List<Seat> getSeats() {
         return new ArrayList<>(screen.getSeats().values()) ;
     }
+
+    @Override
+    public String toString() {
+        return "Show [id=" + id + ", startTime=" + startTime + ", endTime=" + endTime + ", movie=" + movie.getTitle()
+                + ", theatre=" + theatre.getName() + ", screen=" + screen.getName() + "]";
+    }
     
 }

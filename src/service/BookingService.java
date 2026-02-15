@@ -23,8 +23,6 @@ public class BookingService {
     private final Map<String, Booking> bookingMap ;
     private final LockManager lockManager ;
 
-    
-
     public BookingService(LockManager lockManager) {
         this.lockManager = lockManager;
         this.bookingMap = new HashMap<>();
@@ -59,14 +57,14 @@ public class BookingService {
     public void confirmBooking(Booking booking, PaymentStrategy paymentStrategy) {
        //validate the seat status
         if(booking.getStatus() != BookingStatus.CREATED) {
-            throw new IllegalStateException("Booking is not created yet");
+            System.out.println("Invalid booking state..");
         }
 
         // validate if lock still valid
         for(String seatId : booking.getSeatIds()) {
             String lockKey = booking.getShowId()+":"+seatId;
-            if(!lockManager.isLockExpired(lockKey) || lockManager.isLockedBy(lockKey, booking.getUserId())) {
-                throw new IllegalStateException("Seat is "+ seatId+ " is not available now. Please Try to book other seats");
+            if(lockManager.isLockExpired(lockKey) || !lockManager.isLockedBy(lockKey, booking.getUserId())) {
+                System.out.println("Seat is "+ seatId+ " is not available now. Please Try to book other seats");
             }
         }
 
@@ -79,9 +77,10 @@ public class BookingService {
         // Release the lock for all seats and update booking status as CONFIRMED if payment success
         if(paymentStatus == PaymentStatus.SUCCESS){
             booking.setStatus(BookingStatus.CONFIRMED);
-            System.out.println("Booking is CONFIRMED");
+            System.out.println("Booking is CONFIRMED for the seats - "+ booking.getSeatIds());
         }else{
             booking.setStatus(BookingStatus.CANCELLED);
+            System.out.println("Payment is FAILED due to invalid card entered");
             System.out.println("Booking is CANCELLED");
         }
         
@@ -89,6 +88,7 @@ public class BookingService {
             String lockKey = booking.getShowId() + ":"+ seatId;
             lockManager.unLockSeats(lockKey);
         }
+        saveBooking(booking);
         
     }
 }

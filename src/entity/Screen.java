@@ -74,5 +74,9 @@ public class Screen {
             return false;
         return true;
     }
+
+    public Map<String, Seat> getSeats() {
+        return seats;
+    }
     
 }

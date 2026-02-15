@@ -8,9 +8,12 @@ import factory.SeatFactory;
 
 public class SeatService {
 
-    Map<String, Seat> seatMap = new HashMap<>();
+    private final Map<String, Seat> seatMap = new HashMap<>();
 
-      public Seat createSeat(String row, int num, double price, SeatType seatType) {
+    public SeatService() {
+    }
+
+    public Seat createSeat(String row, int num, double price, SeatType seatType) {
         Seat seat = SeatFactory.getInstance(seatType, row, num, price);
         saveSeat(seat);
         return seat;

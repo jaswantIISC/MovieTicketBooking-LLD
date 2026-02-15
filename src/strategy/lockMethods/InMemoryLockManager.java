@@ -52,9 +52,6 @@ public class InMemoryLockManager implements LockManager{
 
     @Override
     public boolean isLockExpired(String key) {
-        if(!locks.contains(key)){
-            return false;
-        }
         UserLockExpiry userLockExpiry = locks.get(key);
         long currentTimeMillis = System.currentTimeMillis();
         return userLockExpiry !=null && userLockExpiry.deadline < currentTimeMillis;
@@ -62,9 +59,6 @@ public class InMemoryLockManager implements LockManager{
 
     @Override
     public boolean isLockedBy(String key, String userId) {
-        if(!locks.contains(key)){
-            return false;
-        }
         UserLockExpiry userLockExpiry = locks.get(key);
         return userLockExpiry != null && userLockExpiry.owner.equalsIgnoreCase(userId);
     }

@@ -6,15 +6,19 @@ import java.util.Map;
 import entity.Screen;
 
 public class ScreenService {
-    Map<String, Screen> screenMap = new HashMap<>();
+    private final Map<String, Screen> screenMap = new HashMap<>();
+    
+
+    public ScreenService() {
+    }
 
     public Screen createScreen(String id, String name) {
         Screen screen = new Screen(id, name);
-        addScreen(screen);
+        saveScreen(screen);
         return screen;
     }
 
-    public void addScreen(Screen screen) {
+    public void saveScreen(Screen screen) {
         screenMap.put(screen.getId(), screen);
     }
     
