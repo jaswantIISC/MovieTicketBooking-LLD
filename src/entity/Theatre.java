@@ -1,49 +1,51 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Theatre {
 
-    private String id;
-    private String name;
-    private String city;
-    private List<Screen> screens;
+    private final String id;
+    private final String name;
+    private final String city;
+    private final Map<String, Screen> screens;
 
     public Theatre(String id, String name, String city){
         this.id = id;
         this.name = name;
         this.city = city;
-        this.screens = new ArrayList<>();
+        this.screens = new HashMap<>();
     }
 
     public void addScreen(Screen screen) {
-        this.screens.add(screen);
+        this.screens.put(screen.getId(), screen);
+    }
+
+    public Screen getScreen(String screenId) {
+        return this.screens.get(screenId);
     }
 
     public String getId() {
         return id;
     }
-    public void setId(String id) {
-        this.id = id;
-    }
+  
     public String getName() {
         return name;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
+  
     public String getCity() {
         return city;
     }
-    public void setCity(String city) {
-        this.city = city;
+   
+  
+
+    @Override
+    public String toString() {
+        return "Theatre [id=" + id + ", name=" + name + ", city=" + city + ", screens=" + screens + "]";
     }
-    public List<Screen> getScreens() {
+
+    public Map<String, Screen> getScreens() {
         return screens;
-    }
-    public void setScreens(List<Screen> screens) {
-        this.screens = screens;
     }
 
 }
