@@ -1,6 +1,10 @@
 package entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import strategy.pricing.PriceStrategy;
 
 public class Show {
 
@@ -10,15 +14,17 @@ public class Show {
     private final Movie movie;
     private final Theatre theatre;
     private final Screen screen;
+    private final PriceStrategy priceStrategy;
     
     public Show(String id, LocalDateTime startTime, LocalDateTime endTime, Movie movie, Theatre theatre,
-            Screen screen) {
+            Screen screen, PriceStrategy priceStrategy) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
         this.movie = movie;
         this.theatre = theatre;
         this.screen = screen;
+        this.priceStrategy = priceStrategy;
     }
 
     public String getId() {
@@ -45,4 +51,12 @@ public class Show {
         return screen;
     }
 
+    public PriceStrategy getPriceStrategy() {
+        return priceStrategy;
+    }
+
+    public List<Seat> getSeats() {
+        return new ArrayList<>(screen.getSeats().values()) ;
+    }
+    
 }

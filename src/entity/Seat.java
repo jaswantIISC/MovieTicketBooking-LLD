@@ -19,6 +19,8 @@ public abstract class Seat {
 
     public abstract SeatType getType();
 
+    public abstract double getPrice();
+    
     public String getId() {
         return id;
     }

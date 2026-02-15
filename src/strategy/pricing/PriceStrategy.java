@@ -1,5 +1,10 @@
 package strategy.pricing;
 
-public enum PriceStrategy {
+import java.util.List;
 
-}
+import entity.Seat;
+
+public interface PriceStrategy {
+
+    public double calculatePrice(List<Seat> seats);
+} 
