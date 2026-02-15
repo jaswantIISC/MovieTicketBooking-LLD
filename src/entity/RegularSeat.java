@@ -15,6 +15,7 @@ public class RegularSeat extends Seat{
         return SeatType.REGULAR;
     }
 
+    @Override
     public double getPrice() {
         return price;
     }
