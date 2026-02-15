@@ -41,6 +41,11 @@ public abstract class Seat {
 
   
     @Override
+    public String toString() {
+        return "Seat [id=" + id + ", row=" + row + ", num=" + num + ", status=" + status + "]";
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
